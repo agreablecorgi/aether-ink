@@ -110,16 +110,20 @@ export default function ModelSelector({ value, onChange }: ModelSelectorProps) {
                         onClick={() => setIsOpen(false)}
                     >
                         <motion.div 
-                            className="model-side-slider glass"
+                            className="model-side-slider acrylic"
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                             onClick={(e) => e.stopPropagation()}
+                            style={{ 
+                                boxShadow: 'var(--shadow-28)',
+                                borderLeft: '1px solid var(--border)'
+                            }}
                         >
-                            <div className="model-slider-header">
-                                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 500 }}>Select Architect Model</h3>
-                                <button className="btn-icon" onClick={() => setIsOpen(false)}>
+                            <div className="model-slider-header" style={{ padding: '20px', borderBottom: '1px solid var(--border-subtle)' }}>
+                                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>Select Architect Model</h3>
+                                <button className="btn btn-ghost" onClick={() => setIsOpen(false)} style={{ padding: 8 }}>
                                     <X size={18} />
                                 </button>
                             </div>
@@ -167,9 +171,14 @@ export default function ModelSelector({ value, onChange }: ModelSelectorProps) {
                                                 onChange(model.id);
                                                 setIsOpen(false);
                                             }}
+                                            style={{ 
+                                                borderRadius: 'var(--radius-sm)',
+                                                margin: '2px 8px',
+                                                padding: '10px 12px'
+                                            }}
                                         >
                                             <div className="model-item-content">
-                                                <div className="model-item-title">{model.id}</div>
+                                                <div className="model-item-title" style={{ fontWeight: 500, fontSize: '0.85rem' }}>{model.id}</div>
                                                 <div className="model-item-meta">
                                                     <span>{(model.context_length / 1000).toFixed(0)}k context</span>
                                                 </div>

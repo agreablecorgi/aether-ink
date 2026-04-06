@@ -89,7 +89,7 @@ export default function ToastContainer() {
                             boxShadow: 'var(--shadow-lg)',
                             fontFamily: 'var(--font-ui)',
                             fontSize: '0.85rem',
-                            color: 'var(--text-primary)',
+                            color: 'var(--text)',
                             pointerEvents: 'auto',
                             minWidth: 200,
                             maxWidth: 380,

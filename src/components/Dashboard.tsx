@@ -65,29 +65,34 @@ export default function Dashboard({ onTeacherMode }: { onTeacherMode?: () => voi
     };
 
     return (
-        <div className="dashboard">
+        <div className="dashboard mica">
             {/* Header */}
             <motion.header
-                className="dashboard-header"
+                className="dashboard-header acrylic"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                    padding: '12px 48px',
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 50,
+                    borderBottomColor: 'var(--border-subtle)',
+                }}
             >
                 <div className="logo">
-                    <div className="logo-icon">
-                        <Sparkles size={16} color="white" />
-                    </div>
-                    <span>Aether</span> Ink
+                    <span className="logo-aether">Aether</span>
+                    <span className="logo-ink">Ink</span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     {/* Search */}
                     <div style={{ position: 'relative' }}>
                         <Search
-                            size={16}
+                            size={14}
                             style={{
                                 position: 'absolute',
-                                left: 12,
+                                left: 10,
                                 top: '50%',
                                 transform: 'translateY(-50%)',
                                 color: 'var(--text-tertiary)',
@@ -98,12 +103,12 @@ export default function Dashboard({ onTeacherMode }: { onTeacherMode?: () => voi
                             placeholder="Search projects..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            style={{ paddingLeft: 36, width: 240 }}
+                            style={{ paddingLeft: 32, width: 200, fontSize: '0.85rem' }}
                         />
                     </div>
 
                     <button
-                        className="btn-icon"
+                        className="btn btn-ghost"
                         onClick={() =>
                             dispatch({
                                 type: 'SET_THEME',
@@ -111,32 +116,37 @@ export default function Dashboard({ onTeacherMode }: { onTeacherMode?: () => voi
                             })
                         }
                         title="Toggle theme"
+                        style={{ padding: 8 }}
                     >
                         {state.themeVariant === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                     </button>
 
                     <button
-                        className="btn-icon"
+                        className="btn btn-ghost"
                         onClick={() => dispatch({ type: 'SET_VIEW', payload: 'settings' })}
                         title="Settings"
+                        style={{ height: 36, padding: '0 12px' }}
                     >
-                        <Settings size={18} />
+                        Settings
                     </button>
+
+                    <div style={{ width: 1, height: 20, background: 'var(--border-subtle)', margin: '0 4px' }} />
 
                     <button
                         className="btn btn-surface"
                         onClick={onTeacherMode}
                         title="Teacher Mode — Learn creative writing"
-                        style={{ gap: 6 }}
+                        style={{ height: 36, padding: '0 16px' }}
                     >
-                        <GraduationCap size={16} /> Learn
+                        Learn
                     </button>
 
                     <button
                         className="btn btn-primary"
                         onClick={() => setShowNewProject(true)}
+                        style={{ height: 36, padding: '0 16px' }}
                     >
-                        <Plus size={16} /> New Project
+                        New Project
                     </button>
                 </div>
             </motion.header>
@@ -183,7 +193,7 @@ export default function Dashboard({ onTeacherMode }: { onTeacherMode?: () => voi
                             {filteredProjects.map((project, i) => (
                                 <motion.div
                                     key={project.id}
-                                    className="project-card glow-border"
+                                    className="project-card"
                                     onClick={() => actions.openProject(project)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -242,12 +252,18 @@ export default function Dashboard({ onTeacherMode }: { onTeacherMode?: () => voi
                         onClick={() => setShowNewProject(false)}
                     >
                         <motion.div
-                            className="modal"
+                            className="modal acrylic"
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                             onClick={(e) => e.stopPropagation()}
+                            style={{
+                                borderRadius: 'var(--radius-xl)',
+                                border: '1px solid var(--border)',
+                                boxShadow: 'var(--shadow-64)',
+                                maxWidth: '520px',
+                            }}
                         >
                             <h2 className="modal-title">New Project</h2>
 

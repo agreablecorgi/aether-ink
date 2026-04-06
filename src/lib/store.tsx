@@ -92,7 +92,7 @@ const initialState: AppState = {
     sidebarOpen: false,
     sidecarOpen: false,
     commandPaletteOpen: false,
-    typewriterMode: true,
+    typewriterMode: false,
     focusMode: false,
     mapOpen: false,
     apiKey: '',
@@ -451,6 +451,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('aether-ink-theme', state.themeVariant);
         saveSetting('theme', state.themeVariant);
     }, [state.themeVariant, saveSetting]);
+
+    // Apply theme whenever themeVariant or mood changes
+    useEffect(() => {
+        applyTheme(state.themeVariant, state.mood);
+    }, [state.themeVariant, state.mood]);
 
     return (
         <AppContext.Provider value={{ state, dispatch, actions }}>

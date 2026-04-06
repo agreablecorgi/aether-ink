@@ -116,28 +116,48 @@ export function applyTheme(variant: ThemeVariant, mood: Mood) {
     root.style.setProperty('--accent-glow', moodTheme.accentGlow);
     root.style.setProperty('--bg-tint', moodTheme.bgTint);
 
+    // Derived accents for gradients and high-impact UI elements
+    const accentHsl = moodTheme.accent.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+    if (accentHsl) {
+        const [_, h, s, l] = accentHsl;
+        root.style.setProperty('--accent-light', `hsl(${h}, ${s}%, ${Math.min(90, parseInt(l) + 15)}%)`);
+        root.style.setProperty('--accent-dark', `hsl(${h}, ${s}%, ${Math.max(10, parseInt(l) - 15)}%)`);
+    } else {
+        root.style.setProperty('--accent-light', moodTheme.accent);
+        root.style.setProperty('--accent-dark', moodTheme.accentMuted);
+    }
+
+    // Bronze brand variables (Brand-wide primary action color)
+    root.style.setProperty('--bronze-light', 'hsl(32, 85%, 60%)');
+    root.style.setProperty('--bronze-main', 'hsl(32, 70%, 45%)');
+    root.style.setProperty('--bronze-dark', 'hsl(32, 60%, 35%)');
+
     if (variant === 'dark') {
         root.style.setProperty('--bg-primary', 'hsl(225, 15%, 8%)');
         root.style.setProperty('--bg-secondary', 'hsl(225, 14%, 11%)');
         root.style.setProperty('--bg-tertiary', 'hsl(225, 13%, 14%)');
         root.style.setProperty('--bg-surface', 'hsl(225, 12%, 16%)');
         root.style.setProperty('--bg-hover', 'hsl(225, 12%, 18%)');
-        root.style.setProperty('--text-primary', 'hsl(40, 15%, 90%)');
-        root.style.setProperty('--text-secondary', 'hsl(40, 10%, 65%)');
-        root.style.setProperty('--text-tertiary', 'hsl(40, 8%, 45%)');
-        root.style.setProperty('--border', 'hsla(220, 12%, 30%, 0.5)');
-        root.style.setProperty('--border-subtle', 'hsla(220, 12%, 25%, 0.3)');
+        root.style.setProperty('--text', 'hsl(40, 15%, 94%)'); // Softened white
+        root.style.setProperty('--text-secondary', 'hsl(40, 10%, 82%)');
+        root.style.setProperty('--text-tertiary', 'hsl(40, 8%, 65%)');
+        root.style.setProperty('--border', 'hsl(40, 5%, 32%)');
+        root.style.setProperty('--border-subtle', 'hsl(40, 5%, 22%)');
+        root.style.setProperty('--mica', 'hsl(225, 14%, 10%)');
+        root.style.setProperty('--acrylic', 'hsla(225, 14%, 12%, 0.85)');
     } else {
         root.style.setProperty('--bg-primary', 'hsl(38, 30%, 96%)');
-        root.style.setProperty('--bg-secondary', 'hsl(38, 25%, 93%)');
-        root.style.setProperty('--bg-tertiary', 'hsl(38, 20%, 90%)');
-        root.style.setProperty('--bg-surface', 'hsl(38, 18%, 97%)');
-        root.style.setProperty('--bg-hover', 'hsl(38, 18%, 88%)');
-        root.style.setProperty('--text-primary', 'hsl(225, 20%, 15%)');
-        root.style.setProperty('--text-secondary', 'hsl(225, 12%, 40%)');
-        root.style.setProperty('--text-tertiary', 'hsl(225, 8%, 55%)');
-        root.style.setProperty('--border', 'hsla(225, 15%, 75%, 0.4)');
-        root.style.setProperty('--border-subtle', 'hsla(225, 15%, 80%, 0.25)');
+        root.style.setProperty('--bg-secondary', 'hsl(38, 25%, 92%)');
+        root.style.setProperty('--bg-tertiary', 'hsl(38, 20%, 88%)');
+        root.style.setProperty('--bg-surface', 'hsl(38, 18%, 98%)');
+        root.style.setProperty('--bg-hover', 'hsl(38, 18%, 90%)');
+        root.style.setProperty('--text', 'hsl(38, 20%, 12%)'); // Rich ink black
+        root.style.setProperty('--text-secondary', 'hsl(38, 15%, 28%)');
+        root.style.setProperty('--text-tertiary', 'hsl(38, 10%, 45%)');
+        root.style.setProperty('--border', 'hsla(38, 20%, 20%, 0.28)');
+        root.style.setProperty('--border-subtle', 'hsla(38, 20%, 20%, 0.18)');
+        root.style.setProperty('--mica', 'hsl(38, 30%, 98%)');
+        root.style.setProperty('--acrylic', 'hsla(38, 30%, 98%, 0.85)');
     }
 
     root.setAttribute('data-theme', variant);

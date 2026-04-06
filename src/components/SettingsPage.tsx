@@ -44,10 +44,7 @@ export default function SettingsPage({ onBack }: { onBack: () => void }) {
                         <ChevronLeft size={20} />
                     </button>
                     <div className="logo">
-                        <div className="logo-icon">
-                            <Settings size={16} color="white" />
-                        </div>
-                        <span>Aether</span> Settings
+                        <span className="logo-aether">Aether</span> <span className="logo-ink">Settings</span>
                     </div>
                 </div>
 

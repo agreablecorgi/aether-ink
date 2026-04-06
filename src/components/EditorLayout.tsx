@@ -154,12 +154,13 @@ export default function EditorLayout() {
             <AnimatePresence>
                 {state.sidebarOpen && (
                     <motion.div
-                        className="sidebar"
+                        className="sidebar acrylic"
                         initial="closed"
                         animate="open"
                         exit="closed"
                         variants={sidebarVariants}
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ borderRight: '1px solid var(--border)' }}
                     >
                         <div className="sidebar-header">
                             <div className="sidebar-title">Chapters</div>
@@ -235,11 +236,11 @@ export default function EditorLayout() {
                         </div>
 
                         {/* Project info at bottom */}
-                        <div style={{ padding: '12px 16px', borderTop: '1px solid var(--border-subtle)' }}>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginBottom: 4 }}>
-                                TOTAL: {totalWords.toLocaleString()} words
+                        <div style={{ padding: '16px', borderTop: '1px solid var(--border-subtle)', background: 'rgba(0,0,0,0.1)' }}>
+                            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginBottom: 6, fontWeight: 600 }}>
+                                TOTAL: {totalWords.toLocaleString()} WORDS
                             </div>
-                            <div className="mood-indicator">
+                            <div className="mood-indicator" style={{ background: 'var(--bg-surface)', padding: '4px 8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
                                 <span className="mood-dot" />
                                 {moodTheme.name}
                             </div>
@@ -256,59 +257,66 @@ export default function EditorLayout() {
                     onMouseEnter={handleToolbarHover}
                     onMouseLeave={handleToolbarLeave}
                 >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() => dispatch({ type: 'TOGGLE_SIDEBAR' })}
                             title="Toggle sidebar (Ctrl+B)"
+                            style={{ padding: 8 }}
                         >
                             <Menu size={18} />
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() => {
                                 dispatch({ type: 'SET_VIEW', payload: 'dashboard' });
                                 dispatch({ type: 'SET_CURRENT_PROJECT', payload: null });
                             }}
                             title="Back to dashboard"
+                            style={{ padding: 8 }}
                         >
                             <ChevronLeft size={18} />
                         </button>
 
+                        <div style={{ width: 1, height: 16, background: 'var(--border-subtle)', margin: '0 4px' }} />
+
                         <span style={{
                             fontSize: '0.85rem',
+                            fontWeight: 500,
                             color: 'var(--text-secondary)',
-                            marginLeft: 8,
                         }}>
                             {state.currentProject?.title}
                             {state.currentChapter && (
-                                <span style={{ color: 'var(--text-tertiary)' }}> / {state.currentChapter.title}</span>
+                                <span style={{ color: 'var(--text-tertiary)', fontWeight: 400 }}> / {state.currentChapter.title}</span>
                             )}
                         </span>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                         {/* Mode switcher */}
-                        <div style={{ display: 'flex', gap: 2, background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', padding: 2 }}>
+                        <div style={{ display: 'flex', gap: 2, background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', padding: 3, border: '1px solid var(--border-subtle)' }}>
                             {(['story', 'script', 'draft'] as WritingMode[]).map((m) => (
                                 <button
                                     key={m}
-                                    className={`btn-icon ${mode === m ? '' : ''}`}
+                                    className="btn"
                                     onClick={() => actions.updateProjectMode(m)}
                                     title={`${m} mode`}
                                     style={{
                                         background: mode === m ? 'var(--bg-surface)' : 'transparent',
                                         color: mode === m ? 'var(--accent)' : 'var(--text-tertiary)',
-                                        borderRadius: 4,
-                                        padding: '4px 8px',
+                                        borderRadius: 'var(--radius-sm)',
+                                        padding: '0 12px',
                                         fontSize: '0.7rem',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.06em',
-                                        fontWeight: mode === m ? 600 : 400,
+                                        fontWeight: mode === m ? 600 : 500,
+                                        border: 'none',
+                                        height: 28,
+                                        boxShadow: mode === m ? 'var(--shadow-2)' : 'none',
                                     }}
                                 >
-                                    {m === 'story' ? <BookOpen size={14} /> : m === 'script' ? <FileText size={14} /> : <PenTool size={14} />}
+                                    {m}
                                 </button>
                             ))}
                         </div>
@@ -316,52 +324,54 @@ export default function EditorLayout() {
                         <div style={{ width: 1, height: 20, background: 'var(--border-subtle)', margin: '0 4px' }} />
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() => dispatch({ type: 'TOGGLE_TYPEWRITER' })}
                             title="Typewriter mode"
-                            style={{ color: state.typewriterMode ? 'var(--accent)' : 'var(--text-tertiary)' }}
+                            style={{ color: state.typewriterMode ? 'var(--accent)' : 'var(--text-tertiary)', padding: 8 }}
                         >
-                            <AlignCenter size={16} />
+                            <AlignCenter size={18} />
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() => dispatch({ type: 'TOGGLE_FOCUS' })}
                             title="Focus mode"
-                            style={{ color: state.focusMode ? 'var(--accent)' : 'var(--text-tertiary)' }}
+                            style={{ color: state.focusMode ? 'var(--accent)' : 'var(--text-tertiary)', padding: 8 }}
                         >
-                            {state.focusMode ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                            {state.focusMode ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() => dispatch({ type: 'TOGGLE_MAP' })}
                             title="Document map (Ctrl+M)"
-                            style={{ color: state.mapOpen ? 'var(--accent)' : 'var(--text-tertiary)' }}
+                            style={{ color: state.mapOpen ? 'var(--accent)' : 'var(--text-tertiary)', padding: 8 }}
                         >
-                            <Map size={16} />
+                            <Map size={18} />
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={handleCreateSnapshot}
                             title="Save snapshot"
+                            style={{ padding: 8 }}
                         >
-                            <Camera size={16} />
+                            <Camera size={18} />
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={handleExport}
                             title="Export project"
+                            style={{ padding: 8 }}
                         >
-                            <Download size={16} />
+                            <Download size={18} />
                         </button>
 
                         <div style={{ width: 1, height: 20, background: 'var(--border-subtle)', margin: '0 4px' }} />
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-ghost"
                             onClick={() =>
                                 dispatch({
                                     type: 'SET_THEME',
@@ -369,17 +379,22 @@ export default function EditorLayout() {
                                 })
                             }
                             title="Toggle theme"
+                            style={{ padding: 8 }}
                         >
-                            {state.themeVariant === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                            {state.themeVariant === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                         </button>
 
                         <button
-                            className="btn-icon"
+                            className="btn btn-primary"
                             onClick={() => dispatch({ type: 'TOGGLE_SIDECAR' })}
                             title="The Architect (Ctrl+J)"
-                            style={{ color: state.sidecarOpen ? 'var(--accent)' : 'var(--text-tertiary)' }}
+                            style={{
+                                height: 36,
+                                padding: '0 20px',
+                                letterSpacing: '0.02em',
+                            }}
                         >
-                            <MessageSquare size={16} />
+                            <span style={{ fontSize: '0.8rem', fontWeight: 700 }}>ARCHITECT</span>
                         </button>
                     </div>
                 </div>
@@ -434,16 +449,16 @@ export default function EditorLayout() {
             <AnimatePresence>
                 {state.sidecarOpen && (
                     <motion.div
-                        className="sidecar"
+                        className="sidecar acrylic"
                         initial="closed"
                         animate="open"
                         exit="closed"
                         variants={sidecarVariants}
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ borderLeft: '1px solid var(--border)' }}
                     >
                         <div className="sidecar-header">
                             <div className="sidecar-title">
-                                <Sparkles size={14} />
                                 The Architect
                             </div>
                             <button
@@ -497,6 +512,11 @@ export default function EditorLayout() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.05 }}
+                                    style={{
+                                        boxShadow: 'var(--shadow-2)',
+                                        border: '1px solid var(--border-subtle)',
+                                        borderRadius: 'var(--radius-md)',
+                                    }}
                                 >
                                     <div className="chat-message-role">
                                         {msg.role === 'user' ? 'You' : 'The Architect'}

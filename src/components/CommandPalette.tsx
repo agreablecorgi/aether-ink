@@ -288,22 +288,28 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
             onClick={onClose}
         >
             <motion.div
-                className="command-palette"
+                className="command-palette acrylic"
                 initial={{ opacity: 0, scale: 0.96, y: -10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: -10 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 onClick={(e) => e.stopPropagation()}
+                style={{
+                    borderRadius: 'var(--radius-xl)',
+                    border: '1px solid var(--border)',
+                    boxShadow: 'var(--shadow-64)',
+                }}
             >
                 <div className="command-palette-input">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <Search size={16} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <Search size={18} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                         <input
                             ref={inputRef}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Type a command..."
+                            style={{ fontSize: '1rem', fontWeight: 400 }}
                         />
                     </div>
                 </div>

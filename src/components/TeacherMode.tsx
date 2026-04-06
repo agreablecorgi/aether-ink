@@ -295,8 +295,7 @@ export default function TeacherMode({ onBack }: { onBack: () => void }) {
             <div className="dashboard" style={{ background: 'var(--bg-primary)' }}>
                 <div className="dashboard-header">
                     <div className="logo">
-                        <div className="logo-icon"><GraduationCap size={16} /></div>
-                        <span>Aether Ink</span> · Teacher Mode
+                        <span className="logo-aether">Aether</span> <span className="logo-ink">Ink</span> · Teacher Mode
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
                         <button className="btn btn-surface" onClick={onBack}>
@@ -315,7 +314,6 @@ export default function TeacherMode({ onBack }: { onBack: () => void }) {
                             animate={{ opacity: 1, y: 0 }}
                             style={{ textAlign: 'center', padding: '80px 0' }}
                         >
-                            <GraduationCap size={64} style={{ color: 'var(--accent)', opacity: 0.3, marginBottom: 24 }} />
                             <h2 style={{ marginBottom: 12 }}>Welcome to Teacher Mode</h2>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 480, margin: '0 auto 32px' }}>
                                 Start a structured creative writing course in any language.
@@ -404,7 +402,6 @@ export default function TeacherMode({ onBack }: { onBack: () => void }) {
                             >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                                     <div className="modal-title" style={{ margin: 0 }}>
-                                        <GraduationCap size={20} style={{ display: 'inline', marginRight: 10, verticalAlign: 'middle' }} />
                                         Start a New Course
                                     </div>
                                     <button className="btn-icon" onClick={() => setShowNewCourse(false)}><X size={16} /></button>
