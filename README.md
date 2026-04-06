@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aether Ink 🖋️
 
-## Getting Started
+**The high-performance, flow-state creative writing environment.**
 
-First, run the development server:
+Aether Ink is a minimalist, local-first writing app designed for novelists, screenwriters, and storytellers who value focus and narrative depth. Built with a "Zen-first" philosophy, it combines a high-contrast writing canvas with a sophisticated AI Architect to help you build worlds, refine plots, and master the craft.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Logo](https://raw.githubusercontent.com/agreablecorgi/aether-ink/main/public/logo.png) *(Placeholder — actual UI used in production)*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Core Philosophy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Zero Distraction**: No icons, no noise. Only typography and your words.
+- **Humane Contrast**: Optimized HSL palettes (Obsidian & Parchment) for healthy, long-duration writing.
+- **Narrative Architecture**: Conversations with an AI Architect that understands your specific story context.
+- **Local-First**: Your stories stay on your machine, powered by a robust SQLite engine.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Key Features
 
-## Learn More
+### 🌖 Obsidian & Parchment
+Switch instantly between a deep charcoal "night mode" and a rich, paper-like "light mode." Both themes are meticulously tuned to have a ~10:1 contrast ratio that is comfortable for the eyes.
 
-To learn more about Next.js, take a look at the following resources:
+### 🏛️ The Architect
+A dedicated sidecar powered by **OpenRouter**. Unlike generic LLM chat, the Architect is integrated directly into your editor, helping you brainstorm characters, check for plot holes, or expand on descriptions without leaving the flow.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🎓 Teacher Mode
+A set of AI-guided writing courses. Lessons are generated on-the-fly in any language, followed by exercises that the AI grades with honest, constructive feedback.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ⌨️ Typewriter & Focus Modes
+Keep your current line centered and dim everything else. Aether Ink recreates the focus of a classic typewriter while providing all the power of a modern digital editor.
 
-## Deploy on Vercel
+## 🛠️ Technology Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend**: Next.js 15 (App Router), Framer Motion, Tailwind CSS (for layout), Lucide.
+- **Editor Core**: Tiptap (Headless rich-text).
+- **Backend/Persistence**: Better-SQLite3 / Drizzle ORM.
+- **AI Integration**: OpenRouter API.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Getting Started
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/agreablecorgi/aether-ink
+   cd aether-ink
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Initialize the Database**:
+   ```bash
+   # Database initializes automatically on first run
+   npm run dev
+   ```
+
+4. **Add your API Key**:
+   Open the **Settings** menu within the app and paste your **OpenRouter API Key**.
+
+## 📖 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Crafted with precision by the writers of tomorrow.* 
+ [aether-ink.app](https://aether-ink.app) (soon)
